@@ -11,16 +11,16 @@ git init
 ```
 这个命令将创建一个名为 .git 的子目录（隐藏文件夹），据说这些文件是 Git 仓库的骨干。
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/00.png)
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/00.png)
 
 当然，我们不建议这样做，因为这样会在上传的过程中出现一些问题。我们推荐在文件夹里把现有的库clone下来。
 在浏览器中登陆自己的github，然后找到三老师（网址https://github.com/artisticzhao ），进入tech._dept._book，然后点击右上角的fork。
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/01.png)  
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/01.png)  
 
 在fork成功之后回到自己的GitHub上点击“clone or download”，点击网址旁边的按钮来复制网址。
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/02.png) 
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/02.png) 
  
 之后到git的界面，输入
 ```
@@ -28,7 +28,7 @@ git clone https://...（右键粘贴刚才复制的网址）
 ```
 如果得到这样的结果，说明已经clone成功。
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/03.png)  
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/03.png)  
 
 ## 第二步————写文章
 在你已经建好的文件夹里面新建一个 .md的文件。然后就可以在里面写你想写的东西了。
@@ -40,7 +40,7 @@ git clone https://...（右键粘贴刚才复制的网址）
 
 关于图片插入的问题：
 
-如果用notepad来编辑的话一般格式为![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/07.png)
+如果用notepad来编辑的话一般格式为![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/07.png)
 其中关于图片的地址：可以先将图片整理好后跳过插入图片的步骤，然后通过在自己的GitHub上找到该图片右键查看图片地址来获得。
 
 ## 第三步————上传到自己的GitHub
@@ -63,7 +63,7 @@ git add .   或者 git add *
 git status
 ```
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/04.png)  
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/04.png)  
 
 ### commit:
 
@@ -82,10 +82,10 @@ git config user.name "（这里填你注册Github时的用户名）"
 ```
 再执行一下commit的命令，如果你得到了一个 这样的结果，说明第二张桌子上的方块已经被整理好并保存起。
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/05.png)  
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/05.png)  
 
 此处链接一些三老师的文章，里面有详细的讲解。
->[github使用指南——在你pull request之前（如何同步你fork的库）](https://github.com/liyutong0408/tech._dept._book/blob/master/git_book_use/gitbook_fork_sync.md)
+>[github使用指南——在你pull request之前（如何同步你fork的库）](https://github.com/BY2HIT/books.by2hit.net/blob/master/git_book_use/gitbook_fork_sync.md)
 
 ### push:
 
@@ -110,13 +110,13 @@ git push XXX develop
 
 敲黑板！！！这里你的远程库的地址必须是自己的远程库地址，不知道的话可以到自己的GitHub上点clone复制地址（咱们的地址一般格式为https://github.com/（你的用户名）/tech._dept._book.git）
 
-![](https://raw.githubusercontent.com/liyutong0408/tech._dept._book/master/git_book_use/gitbook_use/06.png)  
+![](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/git_book_use/gitbook_use/06.png)  
 
 
 ## 最后一步————提交给三老师
 最后一步就是去自己的GitHub上提交 merge request （此步骤请参考三老师的文章），然后就可以静静地等待三老师的审核啦！（开心~~）
 >参考资料  
->[github使用指南——在你pull request之前（如何同步你fork的库](https://github.com/liyutong0408/tech._dept._book/blob/master/git_book_use/gitbook_fork_sync.md)
+>[github使用指南——在你pull request之前（如何同步你fork的库](https://github.com/BY2HIT/books.by2hit.net/blob/master/git_book_use/gitbook_fork_sync.md)
 
 
 ------The End

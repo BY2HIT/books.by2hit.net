@@ -14,16 +14,16 @@
 
 <center> $$H=-\sum P_i logP_i$$ </center>
 
-![table 1](https://raw.githubusercontent.com/ArtisticZhao/tech._dept._book/master/information/pic_zip/01.png)
+![table 1](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/information/pic_zip/01.png)
 
 对于表格中给出的概率，假设共100字符，则共需要274位。然而此法中仍有不完善的地方，例如：最初的排序中不能很好地保证结果最优。因此，在这种方法的基础上哈夫曼提出了另一种处理方式。仍以依据上述例子进行阐述，操作如下：取出所有字符中出现频率最低的两个，将其频率相加，并视为一个整体，然后从六个频率中抽出最小的两个相加，生成五个频率，以此类推，生成一个树状图。之后在树状图的分支上左侧记0，右侧记1。即得编码。上图。得到结果共需272位，可见哈夫曼编码比香农范诺编码有一定的改进。
 
-![table 2](https://raw.githubusercontent.com/ArtisticZhao/tech._dept._book/master/information/pic_zip/02.png)
-![table 3](https://raw.githubusercontent.com/ArtisticZhao/tech._dept._book/master/information/pic_zip/03.png)
+![table 2](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/information/pic_zip/02.png)
+![table 3](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/information/pic_zip/03.png)
 
 然而，Jorma Rissanen提出的算数编码跳出了0、1数码编码的框架，跨越式地提高了编码效率。举例阐述：若文件中字符A的概率为0.1，B的概率为0.2，C为0.3，D为0.4。此时储存文件开头三个字符BDA，则操作方法为：将0~1的空间按比例划分为ABCD的区域，此例中开头字符是B，所以下一步将B区域再按比例分为ABCD四个区域，第二个字符为D，所以将D区域再按比例分为ABCD四个区域，记录最后这个A的区域中的任意数（图中阴影），即可记录BDA这个字符串，更长的同理。
 
-![table 4](https://raw.githubusercontent.com/ArtisticZhao/tech._dept._book/master/information/pic_zip/04.png)
+![table 4](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/information/pic_zip/04.png)
 
 人们常通过对编码方式的优化实现文件的压缩，而研究压缩主要研究信息的预处理，寻求信息之间的相互联系，进而找出合适的、高效的编码方法，使文件占用空间较小，达到压缩的目的。
 
