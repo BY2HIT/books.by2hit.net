@@ -1,6 +1,6 @@
 # 业余无线电相关内容归档
 * [yagi_Antenna](/radio/yagi_Antenna.md)
-* [2018清明远征](/radio/expedition/expedition.md)
+* [2018清明远征](/radio/expedition.md)
 * [手台测评](/radio/手台测评.md)
 
 ----
