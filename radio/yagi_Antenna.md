@@ -23,14 +23,14 @@ Yagi_Antenna
 我们为这次卫星升空做出了 0.0……1的贡献，哈哈哈！
 
                               天线图纸   
-![yagi_Antenna](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/radio/yagi_Antenna/p1.jpg)
+![yagi_Antenna](yagi_Antenna/p1.jpg)
 
                            矢量网络分析仪
-![yagi_Antenna](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/radio/yagi_Antenna/p2.jpg)
+![yagi_Antenna](yagi_Antenna/p2.jpg)
 
                         以下为项目组全体人员合影
-![yagi_Antenna](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/radio/yagi_Antenna/p3.jpg)
-![yagi_Antenna](https://raw.githubusercontent.com/BY2HIT/books.by2hit.net/master/radio/yagi_Antenna/p4.jpg)
+![yagi_Antenna](yagi_Antenna/p3.jpg)
+![yagi_Antenna](yagi_Antenna/p4.jpg)
 
 注 ：如有疑问，可参考《天线原理》一书
 * [业余无线电](/radio/yagi_Antenna.md)
