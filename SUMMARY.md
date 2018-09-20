@@ -10,7 +10,7 @@
 * [业余无线电](/radio/radio_index.md)
     * [yagi_Antenna](/radio/yagi_Antenna.md)
     * [手台测评](/radio/手台测评.md)
-    * [2018清明远征](/radio/expedition/expedition.md)
+    * [2018清明远征](/radio/expedition.md)
 
 * [Gitbook相关](/git_book_use/gitbook_index.md)
     * [利用git写文章指南](/git_book_use/gitbook_use.md)
