@@ -91,9 +91,40 @@ Logo          : false
 
 ### 提交你的文章
 再提交之前,先要确认目录是否添加好.
-在你刚刚的git-bash窗口中输入
+1. 添加到暂存区  
+在你刚刚的git-bash窗口中输入  
 ```
 git add .
 ```
+![git 添加到暂存区](gitbook_use/07.png)
+请注意上图中画红线的地方  
 
+2. 提交版本   
+再输入
+```
+git commit -m "教你接入开源资料库(部分)"
+```
+上面 -m 后面,引号当中的是一个提示信息,用来提示你自己,这个提交的内容大概是什么.
+![git 提交版本](gitbook_use/08.png)
 
+3. 推送到远程
+```
+git push
+```
+输入账户和密码![上传](gitbook_use/09.png)
+**注意:**这个用户名就是你GitHub的用户名  
+![查看用户名](gitbook_use/10.png)
+![提交成功](gitbook_use/11.png)
+
+4. 向上游库发出提交申请
+这是你的提交是上传到你自己的GitHub中的repo当中的,但是我们的平台是托管到BY2HIT的GitHub平台当中的.这时就需要在你自己的repo页面进行点击new pull request 按钮.进行提交自己的项目.
+![new pr](gitbook_use/12.png)
+
+如果在你fork之后,如果源repo更新了内容之后,就会出现下图的情况:
+![conflict](gitbook_use/13.png)
+这是就需要进行消除**冲突**
+关于消灭冲突和保持和源repo同步的话,请参照这篇文章[github使用指南——在你pull request之前（如何同步你fork的库）](gitbook_fork_sync.md)
+
+详细的看完上一篇文章的话,则你的文章就已经进入管理员审核的列表了.
+
+虽然感觉这个平台你可能觉得麻烦,但是你会渐渐爱上这个平台.习惯开源社区!
