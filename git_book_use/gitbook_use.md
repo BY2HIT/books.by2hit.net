@@ -1,8 +1,6 @@
-Title         : 接入books.by2hit.net的开源创作平台
-Author        : BG2DGR
-Logo          : false
+# 接入books.by2hit.net的开源创作平台
+#### <p align="right"> 作者：BG2DGR</p>
 
-[TITLE]
 
 # 简介 
 
