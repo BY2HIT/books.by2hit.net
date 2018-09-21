@@ -2,8 +2,8 @@
 #### <p align="right"> 作者：BG2DGR</p>
 
 ## 合作写书
-假定这篇文章的前置文章，李雨桐同学的《如何用git写文章》已经完善了，大家都可以按照他的步骤写一篇新的文章了，且推送到自己的GitHub上面，但是gitbook是托管到三老师的GitHub上面([ArtisticZhao](https://github.com/ArtisticZhao))。想要你写的这篇文章发布，就需要向三老师的Github发起pull request。  
-那么这样就会出现这样一个问题（李雨桐和陈功同学都遇到了这个问题）：在他们文章推送之前，三老师又更新了一篇文章，但是你本地的编写的环境是你fork的三老师之前的GitHub，也就是说，三老师在更新自己的GitHub，又加入了文章之后（也可能是其他同学提交了文章），你的repo并没有跟着一同更新，这是你的pull request就好产生冲突（“conflict”）。如何解决呢？
+假定这篇文章的前置文章，李雨桐同学的《如何用git写文章》已经完善了，大家都可以按照他的步骤写一篇新的文章了，且推送到自己的GitHub上面，但是gitbook是托管到BY2HIT的GitHub上面([BY2HIT](https://github.com/BY2HIT))。想要你写的这篇文章发布，就需要向BY2HIT的Github发起pull request。  
+那么这样就会出现这样一个问题（李雨桐和陈功同学都遇到了这个问题）：在他们文章推送之前，三老师又更新了一篇文章，但是你本地的编写的环境是你fork的BY2HIT之前的GitHub，也就是说，三老师在更新自己的GitHub，又加入了文章之后（也可能是其他同学提交了文章），你的repo并没有跟着一同更新，这是你的pull request就好产生冲突（“conflict”）。如何解决呢？
 
 ## 保证你fork的仓库最新（syncing your fork）
 GitHub实际上对应着git “远程仓库”的概念。（似乎隐约记得三老师曾经提过，新建一个repo要从GitHub新建然后，然后clone到本地进行开发）。而这个过程就是为了避免手动新建仓库（repo）的时候`git init`，需要自己添加位于GitHub的远程仓库。
@@ -24,9 +24,9 @@ clone到本地，并使用`git remote -v`查看远程库
 看到这你应该有思路了吧？  
 
 ## 加入同步“上游库”
-我在BG2DGR这个账号中fork了三老师的repo,并克隆到本地
+我在BG2DGR这个账号中fork了BY2HIT的repo,并克隆到本地
 ``` 
-git clone https://github.com/BG2DGR/tech._dept._book.git
+git clone https://github.com/BG2DGR/books.by2hit.net.git
 ```
 查看远程库`git remote -v`  
 ![](gitbook_fork_sync/03.PNG)   

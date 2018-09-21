@@ -1,5 +1,6 @@
 # Gitbook相关内容归档
-* [Git写文章指南](/git_book_use/gitbook_use.md)
+* [gitbook开源资料库接入指南](/git_book_use/gitbook_use.md)
+* [Git写文章指南(旧)](/git_book_use_old/gitbook_use.md)
 * [github使用指南——在你pull request之前（如何同步你fork的库）](/git_book_use/gitbook_fork_sync.md)
 
 

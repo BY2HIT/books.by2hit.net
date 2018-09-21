@@ -13,6 +13,10 @@
   * [2018清明远征](/radio/expedition/expedition.md)
   * [天线入门科普--天线的方向性](radio/getting_started_guide_antenna_directionality.md)
 * [Gitbook相关](/git_book_use/gitbook_index.md)
-  * [利用git写文章指南](/git_book_use/gitbook_use.md)
-  * [github使用指南——在你pull request之前（如何同步你fork的库）](/git_book_use/gitbook_fork_sync.md)
+	* [gitbook开源资料库接入指南](/git_book_use/gitbook_use.md)
+    * [利用git写文章指南(旧)](/git_book_use/gitbook_use_old.md)
+    * [github使用指南——在你pull request之前（如何同步你fork的库）](/git_book_use/gitbook_fork_sync.md)
+        
+----
+版权声明：
 
