@@ -1,3 +1,11 @@
 {
-    "plugins": ["mathjax"]
+    "plugins": ["mathjax", "ga", "baidu-tongji"],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-126225863-1"
+        },
+        "baidu-tongji": {
+            "token": "7576d93d8ec4d5038fa9ab1efd6249d6"
+        }
+    }
 }
