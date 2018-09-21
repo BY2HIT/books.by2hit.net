@@ -2,7 +2,7 @@
 * [yagi_Antenna](/radio/yagi_Antenna.md)
 * [2018清明远征](/radio/expedition.md)
 * [手台测评](/radio/手台测评.md)
-
+* [天线入门科普--天线的方向性](radio/getting_started_guide_antenna_directionality.md)
 ----
 版权声明：
 
