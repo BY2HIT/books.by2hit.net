@@ -11,7 +11,7 @@
 * 项目托管在Github平台,一切开源
 * 内容包括但不限于:业余无线电相关内容,电子电路,互联网技术等
 * 内容由俱乐部管理层人员审核 
-* 遵循[GNU General Public License v3.0](https://github.com/BY2HIT/books.by2hit.net/blob/source/LICENSE)
+* 遵循[creative commons Attribution-NonCommercial-ShareAlike 4.0 International](https://github.com/BY2HIT/books.by2hit.net/blob/source/LICENSE)
 
 # 如何接入
 
