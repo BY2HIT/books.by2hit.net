@@ -4,7 +4,7 @@
 
 # 简介 
 
-[books.by2hit.net](books.by2hit.net)是哈尔滨工业大学业余无线电俱乐部一个为会员开放的创作平台,用以创作更多的原创内容.
+[books.by2hit.net](http://books.by2hit.net)是哈尔滨工业大学业余无线电俱乐部一个为会员开放的创作平台,用以创作更多的原创内容.
 
 # 注意事项
 
