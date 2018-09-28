@@ -12,6 +12,7 @@
   * [手台测评](/radio/手台测评.md)
   * [2018清明远征](/radio/expedition.md)
   * [天线入门科普--天线的方向性](radio/getting_started_guide_antenna_directionality.md)
+  * [通信入门科普--什么是增益(Gain)，为什么常用dB作为单位，如何做简单通信链路计算](radio/getting_started_guide_what_is_gain_and_how_to_use_it.md)
 * [Gitbook相关](/git_book_use/gitbook_index.md)
 	* [gitbook开源资料库接入指南](/git_book_use/gitbook_use.md)
     * [利用git写文章指南(旧)](/git_book_use/gitbook_use_old.md)
