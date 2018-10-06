@@ -6,7 +6,7 @@
 
 矩阵键盘，顾名思义，就是长得像矩阵的键盘，例如，电话拨号按键就是一组矩阵键盘，我们这一讲就是要通过51单片机实现这种随处可见的，用于人机交互的矩阵键盘。
 
-![矩阵键盘](1.png)
+![矩阵键盘](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/1%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98%E5%AE%9E%E7%89%A9.png?raw=true)
 
 ### 2、关键词：
 
@@ -20,17 +20,17 @@
 
 我们扩展板上有9个按键，组成3x3的矩阵键盘，我们板子布线的方式是，同一行共同接到一个IO口，同一列共同接到一个IO口，这样，算下来一共使用了6个IO口。为什么要这样设计？这与一个简单的数学规律有相同之处，同面积的长方形和正方形，肯定正方形的周长最短，而“周长”就好比我们使用的IO口数量，如果我们用1x9的方式，那么就需要10个IO口，而3x3就只需要6个。
 
-![电路图](2电路.png)
+![电路图](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/2%E7%94%B5%E8%B7%AF.png?raw=true)
 
 那么问题来了，我们如何通过这6个IO口，得知每次这九个按键哪个被按下了呢？
 
 设想这样一种情况，当我第一行P1.0的电位置0，此时我若检测到P1.5,P1.6,P1.7中的某个位置变成了低电平，那显然我们是可以确定哪个按键被按下了的。那么我们又如何顾及三行按键呢？答案是：扫描。
 
-![](3.png)
+![](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/3-1%E6%89%AB%E6%8F%8F.png?raw=true)
 
-![](3-2.png)
+![](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/3-2%E6%89%AB%E6%8F%8F.png?raw=true)
 
-![](3-3.png)
+![](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/3-3%E6%89%AB%E6%8F%8F.png?raw=true)
 
 就像我们如果要让数码管显示几位不同的数字，我们只能每一次显示其中一位，通过单片机的高速循环显示以及人眼视觉暂留造成每一位都在同时发光的“假象”。这里，我们同样无法保证同时检测键盘每一行的情况，所以我们采用扫描的方式，将低电平在每行高速循环，给人的感觉就是三行都持续进行着检测。
 
@@ -169,6 +169,6 @@
 
 还有一点，代码注释中提到了消抖，如果不加用于消抖的延时，功能是无法实现的，因为，人的手动操作并不完美，松开按键的一瞬，单片机可以检测到多次按键操作，导致一次按键按出许多个相同的数，加入延时后略过了松开按键的这一段不稳定期，达到目的。从人按键过程的示波器图像可以看出，松开按键的过程中出现很多次的电位变化，消抖就是消去了这一部分的影响。
 
-![示波器波形](4消抖.png)
+![示波器波形](https://github.com/guozix/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/%E7%9F%A9%E9%98%B5%E9%94%AE%E7%9B%98photos/4%E6%B6%88%E6%8A%96.png?raw=true)
 
 
