@@ -39,25 +39,25 @@
 ```C
 
 int getxy()
-	{
-		for(w=0;w<3;w++)
-			{
-				P1=row[w];
-				if(P1!=row[w])//按键导致P1数值发生改变
-					{
-						x=w+1;//找到所在的行
-						switch(P1&0xe0)//分理出P1的高3位进行判断
-							{
-							case 0xc0: {y=1;} break;
-							case 0xa0: {y=2;} break;
-							case 0x60: {y=3;} break;
-							default: x=0;break;
-							}
-					break;
-					}
-			}
-		return 0;
-	}
+{
+  for(w=0;w<3;w++)
+  {
+   P1=row[w];
+   if(P1!=row[w])//按键导致P1数值发生改变
+   {
+    x=w+1;//找到所在的行
+    switch(P1&0xe0)//分理出P1的高3位进行判断
+    {
+     case 0xc0: {y=1;} break;
+     case 0xa0: {y=2;} break;
+     case 0x60: {y=3;} break;
+     default: x=0;break;
+    }
+    break;
+   }
+  }
+  return 0;
+}
 
 ```
 
@@ -66,61 +66,61 @@ int getxy()
 我们用数码管体现出按键的反馈，所以，我们实现的功能是，按下矩阵键盘的某一个键，数码管显示对应的数值。全部的代码样例如下：
 
 ```C
-	#include <stc12c5a.h>
-	unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
-	char row[3]={~0x01,~0x02,~0x04};//分别给P1.0,P1.1,P1.2置0，其他位置全1
-	unsigned char zheng[4]={0x08,0x04,0x02,0x01};//共阳数码管正极
-	char x,y;
-	unsigned int key=23;
+#include <stc12c5a.h>
+unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
+char row[3]={~0x01,~0x02,~0x04};//分别给P1.0,P1.1,P1.2置0，其他位置全1
+unsigned char zheng[4]={0x08,0x04,0x02,0x01};//共阳数码管正极
+char x,y;
+unsigned int key=23;
 
-	void print();//数码管显示函数声明
-	int getxy();//按键检测函数声明
-	
-	void main()
-	{
-		P0M0=0XFF;
-		P0M1=0X00;//开启推挽输出
-		while(1)
-		{
-			getxy();//得到按键的行和列
-			if (x!=0)
-			{
-				key=3*(x-1)+y;//计算按键的数值
-			}
-			else
-			{
-				key=0;
-			}
-			print();
-		}
-	}
-	
-	int getxy()
-	{
-		for(w=0;w<3;w++)
-			{
-				P1=row[w];
-				if(P1!=row[w])//按键导致P1数值发生改变
-					{
-						x=w+1;//找到所在的行
-						switch(P1&0xe0)//分理出P1的高3位进行判断
-							{
-							case 0xc0: {y=1;} break;
-							case 0xa0: {y=2;} break;
-							case 0x60: {y=3;} break;
-							default: x=0;break;
-							}
-					break;
-					}
-			}
-		return 0;
-	}
-	void print()
-	{
-		P2=~num[key];
-		P0=0xff;
-	}
-	
+void print();//数码管显示函数声明
+int getxy();//按键检测函数声明
+
+void main()
+{
+ P0M0=0XFF;
+ P0M1=0X00;//开启推挽输出
+ while(1)
+ {
+  getxy();//得到按键的行和列
+  if (x!=0)
+  {
+   key=3*(x-1)+y;//计算按键的数值
+  }
+  else
+  {
+   key=0;
+  }
+  print();
+ }
+}
+
+int getxy()
+{
+ for(w=0;w<3;w++)
+  {
+   P1=row[w];
+   if(P1!=row[w])//按键导致P1数值发生改变
+    {
+     x=w+1;//找到所在的行
+     switch(P1&0xe0)//分理出P1的高3位进行判断
+     {
+      case 0xc0: {y=1;} break;
+      case 0xa0: {y=2;} break;
+      case 0x60: {y=3;} break;
+      default: x=0;break;
+     }
+    break;
+    }
+  }
+ return 0;
+}
+void print()
+{
+ P2=~num[key];
+ P0=0xff;
+}
+
 ```   
  
 其中关键的部分就是，通过扫描得到了按键的行和列，并且同过简单的数值关系推出按键的数值。
@@ -132,81 +132,80 @@ int getxy()
 首先，显示的四位数字不是相同的了，其次，每次按键都更新显示的数字。第一个问题我们在数码管一课中已经解决，那么更新数字这个问题可如下解决：
 
 ```C
-	num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
+num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
 ```
 
 ```C             
-	#include <stc12c5a.h>
-	unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};//取反之后得到数码管负极
-	char row[3]={~0x01,~0x02,~0x04};
-	unsigned char zheng[4]={0x08,0x04,0x02,0x01};//数码管正极
-	unsigned char b[4]={0};//分离四位数所需数组
-	char x=0,y,r,k;
-	unsigned int i,j,yanshi;
-	long key,num_=3;
+#include <stc12c5a.h>
+unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};//取反之后得到数码管负极
+char row[3]={~0x01,~0x02,~0x04};
+unsigned char zheng[4]={0x08,0x04,0x02,0x01};//数码管正极
+unsigned char b[4]={0};//分离四位数所需数组
+char x=0,y,r,k;
+unsigned int i,j,yanshi;
+long key,num_=3;
 
-	void print();
-	int getxy();//函数声明
-	
-	void main()
-	{
-		P0M0=0XFF;
-		P0M1=0X00;//开启推挽输出
-		while(1)
-		{
-			flag=getxy();
-			if (x!=0)
-			{
-				k=3*(x-1)+y;
-				num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
-				key=num_;
-			  while(getxy());//停留直到按键松开
-			  for(r=0;r<500;r++);//按键松开之后再延时一会度过不稳定期
-			}
-			print();
-		}
-	}
-	
-	int getxy()
-	{
-		x=0;//把x清零
-		for(w=0;w<3;w++)
-		{
-			P1=row[w];
-			if(P1!=row[w])
-			{
-				x=w+1;
-				flag=1;
-				switch(P1&0xe0)
-				{
-					case 0xc0: {y=1;} break;
-					case 0xa0: {y=2;} break;
-					case 0x60: {y=3;} break;
-					default: x=0;break;
-				}
-				break;
-			}
-		}
-		return x;
-	}
-	void print()
-	{
-		for(j=0;j<4;j++)//分出要显示的四位数
-		{
-			b[j]=key%10;
-			key=key/10;
-		}
+void print();
+int getxy();//函数声明
 
-		for(yanshi=0;yanshi<80;yanshi++)
-		{
-			for(i=0;i<4;i++)//循环显示四位
-			{
-				P2=~num[b[i]];
-				P0=zheng[i];
-				for(r=0;r<100;r++);//显示一位之后延时一会
-			}
-		}
-	}
+void main()
+{
+ P0M0=0XFF;
+ P0M1=0X00;//开启推挽输出
+ while(1)
+ {
+  flag=getxy();
+  if (x!=0)
+  {
+   k=3*(x-1)+y;
+   num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
+   key=num_;
+   while(getxy());//停留直到按键松开
+   for(r=0;r<500;r++);//按键松开之后再延时一会度过不稳定期
+  }
+  print();
+ }
+}
+
+int getxy()
+{
+ x=0;//把x清零
+ for(w=0;w<3;w++)
+ {
+  P1=row[w];
+  if(P1!=row[w])
+  {
+   x=w+1;
+   flag=1;
+   switch(P1&0xe0)
+   {
+    case 0xc0: {y=1;} break;
+    case 0xa0: {y=2;} break;
+    case 0x60: {y=3;} break;
+    default: x=0;break;
+   }
+   break;
+  }
+ }
+ return x;
+}
+void print()
+{
+ for(j=0;j<4;j++)//分出要显示的四位数
+ {
+  b[j]=key%10;
+  key=key/10;
+ }
+ for(yanshi=0;yanshi<80;yanshi++)
+ {
+  for(i=0;i<4;i++)//循环显示四位
+  {
+    P2=~num[b[i]];
+    P0=zheng[i];
+    for(r=0;r<100;r++);//显示一位之后延时一会
+  }
+ }
+}
 ```
 
 其中，需要注意的是，这次数码管不是静态显示四位相同的数了，需要通过扫描每次显示四位不同的数。并且每次按下一个按键之后需要更新显示的四位数，key和num_选用long型是因为在单片机中int类型有两个字节储存空间，unsigned int最多能表示到2的16次方-1，65535，这样当一个比较大的四位数（如，99999）乘10的时候就会发生溢出，数据出现错误，所以用四个字节的long型数据，避免这种情况。
