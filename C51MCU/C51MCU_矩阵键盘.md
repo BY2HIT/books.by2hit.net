@@ -36,7 +36,7 @@
 
 矩阵键盘是实现人机交互的部件，我们用数码管体现出按键的反馈，首先，我们实现的功能是，按下矩阵键盘的某一个键，数码管显示对应的数值。实现功能的代码样例如下：
 
-```                               
+```C
 	#include <stc12c5a.h>
 	unsigned char shu[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
 	char hang[3]={~0x01,~0x02,~0x04};//分别给P1.0,P1.1,P1.2置0，其他位置全1
@@ -96,7 +96,7 @@
 
 这或许对大家来说非常的简单，并且可能没有什么实用价值，那么我们实现一个更强的功能：模仿电话按键时的情形，按一个数，就在尾部多一个数。
 
-```             
+```C             
 	#include <stc12c5a.h>
 	unsigned char shu[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};//取反之后得到数码管负极
 	char hang[3]={~0x01,~0x02,~0x04};
@@ -110,64 +110,63 @@
 	int getxy();
 	void main()
 	{
-		P0M0=0XFF;
-		P0M1=0X00;
-		while(1)
-		{
-			 flag=getxy();
-			 if (x!=0)
-			 {
-					k=3*(x-1)+y;
-					num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
-					key=num_;
-				  while(getxy());
-				  for(r=0;r<1000;r++);
-				}
-				print();
-	  }
+	P0M0=0XFF;
+	P0M1=0X00;
+	while(1)
+	{
+		 flag=getxy();
+		 if (x!=0)
+		 {
+				k=3*(x-1)+y;
+				num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
+				key=num_;
+			  while(getxy());
+			  for(r=0;r<1000;r++);
+			}
+			print();
+	}
 	}
 	int getxy()
 	{
-		x=0;
-		for(w=0;w<3;w++)
-			{
-				P1=hang[w];
-				if(P1!=hang[w])
-					{
-						x=w+1;
-						flag=1;
-						switch(P1&0xe0)
-							{
-							case 0xc0: {y=1;} break;
-							case 0xa0: {y=2;} break;
-							case 0x60: {y=3;} break;
-							default: x=0;break;
-							}
-					break;
-					}
-			}
-		return x;
+	x=0;
+	for(w=0;w<3;w++)
+		{
+			P1=hang[w];
+			if(P1!=hang[w])
+				{
+					x=w+1;
+					flag=1;
+					switch(P1&0xe0)
+						{
+						case 0xc0: {y=1;} break;
+						case 0xa0: {y=2;} break;
+						case 0x60: {y=3;} break;
+						default: x=0;break;
+						}
+				break;
+				}
+		}
+	return x;
 	}
 
 	void print()
 	{
-		for(j=0;j<4;j++)//分出要显示的四位数
-		{
-			b[j]=key%10;
-			key=key/10;
-		}
+	for(j=0;j<4;j++)//分出要显示的四位数
+	{
+		b[j]=key%10;
+		key=key/10;
+	}
 
-		for(yanshi=0;yanshi<80;yanshi++)
+	for(yanshi=0;yanshi<80;yanshi++)
+	{
+		for(i=0;i<4;i++)
 		{
-			for(i=0;i<4;i++)
-			{
-				P2=~shu[b[i]];
-				P0=zheng[i];
-				for(r=0;r<100;r++);
-			}
+			P2=~shu[b[i]];
+			P0=zheng[i];
+			for(r=0;r<100;r++);
 		}
 	}
-	
+	}
 ```
 
 其中，需要注意的是，这次数码管不是静态显示四位相同的数了，需要通过扫描每次显示四位不同的数。并且每次按下一个按键之后需要更新显示的四位数，key和num_选用long型是因为在单片机中int类型有两个字节储存空间，unsigned int最多能表示到2的16次方-1，65535，这样当一个比较大的四位数（如，99999）乘10的时候就会发生溢出，数据出现错误，所以用四个字节的long型数据，避免这种情况。
