@@ -26,26 +26,56 @@
 
 设想这样一种情况，当我第一行P1.0的电位置0，此时我若检测到P1.5,P1.6,P1.7中的某个位置变成了低电平，那显然我们是可以确定哪个按键被按下了的。那么我们又如何顾及三行按键呢？答案是：扫描。
 
+就像我们如果要让数码管显示几位不同的数字，我们只能每一次显示其中一位，通过单片机的高速循环显示以及人眼视觉暂留造成每一位都在同时发光的“假象”。这里，我们同样无法保证同时检测键盘每一行的情况，所以我们采用扫描的方式，将低电平在每一行高速循环，给人的感觉就是三行都持续进行着检测。图示如下：
+
 ![](C51MCU_photos/矩阵键盘photos/3-1扫描.png)
 
 ![](C51MCU_photos/矩阵键盘photos/3-2扫描.png)
 
 ![](C51MCU_photos/矩阵键盘photos/3-3扫描.png)
 
-就像我们如果要让数码管显示几位不同的数字，我们只能每一次显示其中一位，通过单片机的高速循环显示以及人眼视觉暂留造成每一位都在同时发光的“假象”。这里，我们同样无法保证同时检测键盘每一行的情况，所以我们采用扫描的方式，将低电平在每行高速循环，给人的感觉就是三行都持续进行着检测。
+而当我们按下一个按键时，高速的扫描会定格在我们按键的那一行为零的情形，然后通过单片机位处理我们就可以算出哪个键被按下。捕捉按键数值的代码如下：
 
-矩阵键盘是实现人机交互的部件，我们用数码管体现出按键的反馈，首先，我们实现的功能是，按下矩阵键盘的某一个键，数码管显示对应的数值。实现功能的代码样例如下：
+```C
+
+int getxy()
+	{
+		for(w=0;w<3;w++)
+			{
+				P1=row[w];
+				if(P1!=row[w])//按键导致P1数值发生改变
+					{
+						x=w+1;//找到所在的行
+						switch(P1&0xe0)//分理出P1的高3位进行判断
+							{
+							case 0xc0: {y=1;} break;
+							case 0xa0: {y=2;} break;
+							case 0x60: {y=3;} break;
+							default: x=0;break;
+							}
+					break;
+					}
+			}
+		return 0;
+	}
+
+```
+
+上面的代码是矩阵键盘的核心部分，而我们得到了按键的数值如何得到体现呢？
+
+我们用数码管体现出按键的反馈，所以，我们实现的功能是，按下矩阵键盘的某一个键，数码管显示对应的数值。全部的代码样例如下：
 
 ```C
 	#include <stc12c5a.h>
-	unsigned char shu[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
-	char hang[3]={~0x01,~0x02,~0x04};//分别给P1.0,P1.1,P1.2置0，其他位置全1
+	unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
+	char row[3]={~0x01,~0x02,~0x04};//分别给P1.0,P1.1,P1.2置0，其他位置全1
 	unsigned char zheng[4]={0x08,0x04,0x02,0x01};//共阳数码管正极
 	char x,y;
 	unsigned int key=23;
 
-	void print();//数码管显示函数
-	int getxy();//按键检测函数
+	void print();//数码管显示函数声明
+	int getxy();//按键检测函数声明
+	
 	void main()
 	{
 		P0M0=0XFF;
@@ -53,7 +83,7 @@
 		while(1)
 		{
 			getxy();//得到按键的行和列
-		  if (x!=0)
+			if (x!=0)
 			{
 				key=3*(x-1)+y;//计算按键的数值
 			}
@@ -64,12 +94,13 @@
 			print();
 		}
 	}
+	
 	int getxy()
 	{
 		for(w=0;w<3;w++)
 			{
-				P1=hang[w];
-				if(P1!=hang[w])//按键导致P1数值发生改变
+				P1=row[w];
+				if(P1!=row[w])//按键导致P1数值发生改变
 					{
 						x=w+1;//找到所在的行
 						switch(P1&0xe0)//分理出P1的高3位进行判断
@@ -86,8 +117,8 @@
 	}
 	void print()
 	{
-			P2=~shu[key];
-			P0=0xff;
+		P2=~num[key];
+		P0=0xff;
 	}
 	
 ```   
@@ -96,76 +127,85 @@
 
 这或许对大家来说非常的简单，并且可能没有什么实用价值，那么我们实现一个更强的功能：模仿电话按键时的情形，按一个数，就在尾部多一个数。
 
+需要多考虑什么因素呢？
+
+首先，显示的四位数字不是相同的了，其次，每次按键都更新显示的数字。第一个问题我们在数码管一课中已经解决，那么更新数字这个问题可如下解决：
+
+```C
+	num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
+```
+
 ```C             
 	#include <stc12c5a.h>
-	unsigned char shu[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};//取反之后得到数码管负极
-	char hang[3]={~0x01,~0x02,~0x04};
+	unsigned char num[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};//取反之后得到数码管负极
+	char row[3]={~0x01,~0x02,~0x04};
 	unsigned char zheng[4]={0x08,0x04,0x02,0x01};//数码管正极
-	unsigned char b[4]={0};//分离四位数
+	unsigned char b[4]={0};//分离四位数所需数组
 	char x=0,y,r,k;
 	unsigned int i,j,yanshi;
 	long key,num_=3;
 
 	void print();
-	int getxy();
+	int getxy();//函数声明
+	
 	void main()
 	{
-	P0M0=0XFF;
-	P0M1=0X00;
-	while(1)
-	{
-		 flag=getxy();
-		 if (x!=0)
-		 {
+		P0M0=0XFF;
+		P0M1=0X00;//开启推挽输出
+		while(1)
+		{
+			flag=getxy();
+			if (x!=0)
+			{
 				k=3*(x-1)+y;
 				num_=(num_*10+k)%10000;//每按下一个键更新一次要显示的数
 				key=num_;
-			  while(getxy());
-			  for(r=0;r<1000;r++);
+			  while(getxy());//停留直到按键松开
+			  for(r=0;r<500;r++);//按键松开之后再延时一会度过不稳定期
 			}
 			print();
+		}
 	}
-	}
+	
 	int getxy()
 	{
-	x=0;
-	for(w=0;w<3;w++)
+		x=0;//把x清零
+		for(w=0;w<3;w++)
 		{
-			P1=hang[w];
-			if(P1!=hang[w])
+			P1=row[w];
+			if(P1!=row[w])
+			{
+				x=w+1;
+				flag=1;
+				switch(P1&0xe0)
 				{
-					x=w+1;
-					flag=1;
-					switch(P1&0xe0)
-						{
-						case 0xc0: {y=1;} break;
-						case 0xa0: {y=2;} break;
-						case 0x60: {y=3;} break;
-						default: x=0;break;
-						}
-				break;
+					case 0xc0: {y=1;} break;
+					case 0xa0: {y=2;} break;
+					case 0x60: {y=3;} break;
+					default: x=0;break;
 				}
+				break;
+			}
 		}
-	return x;
+		return x;
 	}
-
 	void print()
 	{
-	for(j=0;j<4;j++)//分出要显示的四位数
-	{
-		b[j]=key%10;
-		key=key/10;
-	}
-
-	for(yanshi=0;yanshi<80;yanshi++)
-	{
-		for(i=0;i<4;i++)
+		for(j=0;j<4;j++)//分出要显示的四位数
 		{
-			P2=~shu[b[i]];
-			P0=zheng[i];
-			for(r=0;r<100;r++);
+			b[j]=key%10;
+			key=key/10;
 		}
-	}
+
+		for(yanshi=0;yanshi<80;yanshi++)
+		{
+			for(i=0;i<4;i++)//循环显示四位
+			{
+				P2=~num[b[i]];
+				P0=zheng[i];
+				for(r=0;r<100;r++);//显示一位之后延时一会
+			}
+		}
 	}
 ```
 
