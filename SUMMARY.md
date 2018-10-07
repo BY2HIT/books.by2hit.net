@@ -19,7 +19,7 @@
     * [github使用指南——在你pull request之前（如何同步你fork的库）](/git_book_use/gitbook_fork_sync.md)
 * [51单片机](/C51MCU/C51MCU_index.md)
 	* [矩阵键盘](/C51MCU/C51MCU_矩阵键盘.md)
-	
+	* [开发环境配置](/C51MCU/C51MCU_开发环境配置.md)
         
 ----
 版权声明：
