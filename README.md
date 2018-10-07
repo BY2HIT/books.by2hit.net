@@ -12,4 +12,4 @@
 * [数据相关](/information/info_index.md)
 * [Gitbook相关](/git_book_use/gitbook_index.md)
 * [51单片机](/C51MCU/C51MCU_index.md)
-* [会员贡献](/member_donate/member_donate_inex.md)
+* [会员贡献](/member_donate/member_donate_index.md)
