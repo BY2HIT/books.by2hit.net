@@ -11,3 +11,4 @@
 * [Linux相关](/linux/linux_index.md)
 * [数据相关](/information/info_index.md)
 * [Gitbook相关](/git_book_use/gitbook_index.md)
+* [51单片机](/C51MCU/C51MCU_index.md)
