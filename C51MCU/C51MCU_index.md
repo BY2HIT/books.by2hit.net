@@ -2,6 +2,7 @@
 
 * [矩阵键盘](/C51MCU/C51MCU_矩阵键盘.md)
 * [定时器中断](/C51MCU/定时器中断.md)
+* [定时器中断(另一个版本的讲解)](/C51MCU/C51MCU_Timer_Interrupt_HITLYT.md)
 * [开发环境配置](/C51MCU/C51MCU_开发环境配置.md)
 ----
 版权声明：
