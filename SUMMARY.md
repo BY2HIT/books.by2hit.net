@@ -19,6 +19,8 @@
     * [github使用指南——在你pull request之前（如何同步你fork的库）](/git_book_use/gitbook_fork_sync.md)
 * [51单片机](/C51MCU/C51MCU_index.md)
 	* [矩阵键盘](/C51MCU/C51MCU_矩阵键盘.md)
+	* [定时器中断](/C51MCU/定时器中断.md)
+	* [定时器中断(另一个版本的讲解)](/C51MCU/C51MCU_Timer_Interrupt_HITLYT.md)
 	* [开发环境配置](/C51MCU/C51MCU_开发环境配置.md)
 * [会员贡献](/member_donate/member_donate_index.md)
   * [锡焊学习](/member_donate/锡焊学习.md)
