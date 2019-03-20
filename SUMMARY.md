@@ -5,6 +5,7 @@
 * [Introduction](README.md)
 * [Linux相关](/linux/linux_index.md)
   * [SSH运行的程序为什么会挂掉](/linux/SSH_why_dead.md)
+  * [当我在笔记本上安装ubuntu](/linux/when_i_installing_ubuntu_on_notebook.md)
 * [信息处理](/information/info_index.md)
   * [图像压缩](/information/pic_zip.md)
 * [业余无线电](/radio/radio_index.md)
