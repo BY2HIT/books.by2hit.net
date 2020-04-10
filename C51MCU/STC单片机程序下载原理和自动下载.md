@@ -5,7 +5,7 @@
 
 这是STC89C52单片机数据手册中的内容。
 
-![在这里插入图片描述](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E5%A4%8D%E4%BD%8D%E6%BA%90.png)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E5%A4%8D%E4%BD%8D%E6%BA%90.png)
 
 根据数据手册，我们可以知道，当冷启动或者对ISP_CONTR寄存器送入60H（STC12、15、8是对IAP_CONTR寄存器送入60H）产生复位以后，单片机会从ISP监控程序区开始执行程序。（高系列的STC有更多方式可以进入ISP监控程序区）
 
@@ -13,13 +13,13 @@
 
 如果检测到合法的ISP下载命令流，则单片机开始与ISP下载软件通信（如stc-isp），单片机会以**相同的波特率**回复给下载软件50个数据，这也就是为什么我们可以从软件中看到我们单片机当前的设置。
 
-![](返回数据.png)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE.png)
 
 单片机随后擦除flash程序存储器，与此同时软件也会进入编程模式，以**最高波特率**向单片机发送程序码，单片机接收程序码，并将其写入flash程序存储器中。成功后，用户程序立即生效，开始运行用户程序。
 
 那什么是合法的ISP下载命令流呢？
 
-![在这里插入图片描述](https://raw.githubusercontent.com/Qrpucp/books.by2hit.net/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/ISP%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4%E6%B5%81.png)
+![](https://raw.githubusercontent.com/Qrpucp/books.by2hit.net/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/ISP%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4%E6%B5%81.png)
 
 从图上可以看到，当我们按下“下载/编程”后，电脑会通过串口给单片机发送一系列数据。
 
@@ -41,7 +41,7 @@
 
 最后，也是我主要想说的一点是，市面上的USB转TTL模块质量参差不齐，绝大多数模块都没有做好隔离，导致电流会从模块的TX和RX倒灌进单片机，如果此时单片机上的电压高于单片机的**上电复位检测门槛电压**的话，就会导致单片机无法冷启动，进而无法成功下载程序。
 
-![摘自stc15数据手册](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E5%86%B7%E5%90%AF%E5%8A%A8%E5%A4%8D%E4%BD%8D.png?raw=true)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E5%86%B7%E5%90%AF%E5%8A%A8%E5%A4%8D%E4%BD%8D.png?raw=true)
 
 STC15单片机的数据手册中对上电复位检测门槛电压做了解释，我们可以看到，5V单片机冷启动需要把电压降至3.2V以下，3.3V单片机冷启动需要把电压降至1.8V以下。
 
@@ -51,7 +51,7 @@ STC15单片机的数据手册中对上电复位检测门槛电压做了解释，
 
 STC数据手册中给我们提供了一个简单的PL2303下载电路，其中红色箭头指向的那个电阻和二极管就是起隔离作用的。有些人可能会对那个二极管产生疑惑：反向不导通还怎么进行通讯？这就是另外一个问题了，大家可以自行从网上查阅资料。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2020012718411629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTQ2NzA1Ng==,size_16,color_FFFFFF,t_70)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E9%9A%94%E7%A6%BB%E7%94%B5%E8%B7%AF.png)
 
 当然，如果对隔离要求更为严格的话，还是要去查看USB芯片（如PL2303,CH340,FT232等）的数据手册，设计最为合适的下载电路。
 
@@ -62,7 +62,7 @@ STC数据手册中给我们提供了一个简单的PL2303下载电路，其中�
 
 我们也可以在stc-isp软件中设置，当我们的程序修改编译以后就自动下载进单片机。
 
-![](自动下载.png)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD.png)
 
 我们再回忆一下stc单片机下载程序需要什么。第一是需要程序从ISP监控程序区开始运行，第二是需要检测到合法的ISP下载命令流。ISP下载命令流是我们点击下载时，stc-isp提供给我们的，所以我们只需要让单片机在检测到合法的下载命令流以后，进入到ISP程序监控区，便可以实现自动下载了。
 
@@ -92,7 +92,7 @@ STC数据手册中给我们提供了一个简单的PL2303下载电路，其中�
 
 所以这种方式的自动下载就是检测DTR或者RTS引脚在程序下载时的下降沿，然后进行一段时间的断电。下面是作者在网络上找的一个自动下载电路，断电时间约为0.5秒。
 
-![](自动下载电路.png)
+![](https://github.com/Qrpucp/books.by2hit.net/blob/source/C51MCU/C51MCU_photos/STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E5%8E%9F%E7%90%86%E5%92%8C%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD/%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E7%94%B5%E8%B7%AF.png)
 
 有几点说明：
 1. 作者使用的是CH340C芯片，用stc-isp下载时DTR和RTS只会拉低一次。作者看到网上有人说用CH340G芯片下载时，DTR和RTS会输出连续好几个脉冲，但作者并没有验证。
