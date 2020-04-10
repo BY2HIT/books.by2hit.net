@@ -112,15 +112,15 @@ STC数据手册中给我们提供了一个简单的PL2303下载电路，其中�
 //配置串口
 void uart_init(void)
 {
-		TMOD = 0x20;    
-		TH1 = 0xfd;     
-		TL1 = 0xfd;     
-		TR1 = 1;       
-		REN = 1;       
-		SM0 = 0;      
-		SM1 = 1;       
-		EA = 1;         					
-		ES = 1;        
+    TMOD = 0x20;    
+    TH1 = 0xfd;     
+    TL1 = 0xfd;     
+    TR1 = 1;       
+    REN = 1;       
+    SM0 = 0;      
+    SM1 = 1;       
+    EA = 1;         					
+    ES = 1;        
 }
 ```
 serve.h:
@@ -129,8 +129,8 @@ serve.h:
 /*
 funtion:automatic download
 explanation:			
-		switch:#define _DOWNLOAD_(before #include"serve.h")
-		remember to use uart_init before!				
+    switch:#define _DOWNLOAD_(before #include"serve.h")
+    remember to use uart_init before!				
 */
 					
 #ifdef _DOWNLOAD_
@@ -141,21 +141,21 @@ sfr ISP_CONTR = 0xe7;
 
 void uart1_ser() interrupt 4
 { 
-	    static uint8_t uart_ser_n = 0;
-		RI = 0;        //清空接收标志位
-		if(SBUF == 0x7f)  //STC下载指令0X7F
-		{ 
-				uart_ser_n++;   //判断位自加
-				if(uart_ser_n == 10) //如果收到10次0X7F
-				{
-						uart_ser_n = 0;   //判断位清0
-						ISP_CONTR = 0x60;//复位命令  
-				}
-		}
-		else
-		{
-				uart_ser_n = 0;	
-		}
+    static uint8_t uart_ser_n = 0;
+    RI = 0;        //清空接收标志位
+    if(SBUF == 0x7f)  //STC下载指令0X7F
+    { 	
+        uart_ser_n++;   //判断位自加
+        if(uart_ser_n == 10) //如果收到10次0X7F
+        {
+            uart_ser_n = 0;   //判断位清0
+            ISP_CONTR = 0x60;//复位命令  
+        }
+    
+    else
+    {
+        uart_ser_n = 0;	
+    }
 }
 				
 
@@ -166,8 +166,8 @@ void uart1_ser() interrupt 4
 explanation:
     crystal frequency:11.0592MHz
     bps:9600
-	timer1:mode2
-	UART:mode1
+    timer1:mode2
+    UART:mode1
 */
 
 extern void uart_init(void);
@@ -182,12 +182,12 @@ extern void uart_init(void);
 
 int main()
 {
-	uart_init();
-     while(1)
-	{
-		P1 = ~P1;
-		delay_ms(100);
-	}
+    uart_init();
+    while(1)
+    {
+        P1 = ~P1;
+        delay_ms(100);
+    }
 }
 
 ```
